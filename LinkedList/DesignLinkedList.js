@@ -36,3 +36,51 @@ function addAtTail(val) {
   }
   this.size++;
 }
+
+function addAtIndex(index,val){
+  let newnode=new Node(val);
+  // corner case
+  if(index<0 || index>this.size) return;
+  if(index==0){
+    this.addAtHead(val)
+    return;
+  }else if(index==this.size){
+    this.addAtTail(val)
+    return;
+  }else{
+
+    let curr=this.head
+    for(let i=0;i<index-1;i++){
+      curr=curr.next;
+    }
+    newnode.next=curr.next;
+    curr.next=newnode;
+  }
+  this.size++
+}
+
+function get(index){
+  // corner case
+  if(index<0 || index>=this.size) return -1;
+  let curr=this.head;
+  for(let i=0;i<index;i++){
+    curr=curr.next;
+  }
+  return curr.val;
+}
+
+function deleteAtInde(index){
+  // corner case
+  if(index<0 || index>=this.size) return;
+  if(index==0){
+    this.head=this.head.next;
+  }else{
+
+    let curr=this.head;
+    for(let i=0; i<index-1;i++){
+      curr=curr.next;
+    }
+    curr.next=curr.next.next;
+  }
+  this.size--;
+}
