@@ -4,9 +4,9 @@ function reverse(num){
     let rev=0
     num=Math.abs(num)
     while(num!=0){
-        rem=num%10
+        rem=num%10   //remainder
         rev=rev*10+rem
-        num=Math.floor(num/10)
+        num=Math.floor(num/10)    //quoitent
 
     }
     return (numcopy<0)? -rev:rev
