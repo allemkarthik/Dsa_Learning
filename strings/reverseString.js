@@ -31,3 +31,6 @@ var reverseastring=function(s,k){
     }
     return s.join("")
 }
+
+// time complexity= O(n)
+// space = O(n)  because we creating an array
