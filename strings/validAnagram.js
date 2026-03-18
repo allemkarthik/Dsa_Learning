@@ -26,3 +26,30 @@ var validAnagram=function(s,t){
         return false;
     }
 }
+
+// without built in methods
+var isAnagram = function(s, t) {
+    // corner case
+    if(s.length!=t.length) return false;
+    let map={}
+
+    // add first string characters in map with frequency
+    for(let i=0;i<s.length;i++){
+        if(!map[s[i]]){
+            map[s[i]]=1
+        }else{
+            map[s[i]]++
+        }
+    }
+
+    // check second string character in map with first string char if found reduce the count else return false
+    for(let j=0;j<t.length;j++){
+        if(!map[t[j]] || map[t[j]]<0){
+            return false
+        }else{
+            map[t[j]]--
+        }
+    }
+    return true;
+        
+};
