@@ -33,3 +33,26 @@ var groupAnagram=function(strs){
     }
     return [...Object.values(map)]
 }
+
+
+// optimized approach using hashed key
+var groupAnagrams = function(strs) {
+     //create  a map
+     let map={}
+     for(let i of strs){
+        // create a key
+        let freqArr=Array(26).fill(0)
+        for(let j of i){
+            let index=j.charCodeAt()-'a'.charCodeAt()
+            freqArr[index]++
+        }
+        
+        let key=freqArr.join("#")
+        if(!map[key]){
+            map[key]=[i]
+        }else{
+            map[key].push(i)
+        }
+     }
+     return Object.values(map)
+};
