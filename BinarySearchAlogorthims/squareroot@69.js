@@ -23,7 +23,7 @@ var mySqrt = function(x) {
     let left=2
     let right=Math.floor(x/2);
     while(left<=right){
-        let m=Math.floor((left+right)/2)
+        let m=Math.floor(left+((right-left)/2)
         if(x==m**2){
             return m;
         }else if(x<m**2){
