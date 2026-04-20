@@ -43,3 +43,37 @@ var searchRange = function(nums, target) {
     return res;
     
 };
+
+var searchRange = function(nums, target) {
+ // approach 2
+    let l=0;
+    let r=nums.length-1;
+    let res=[-1,-1]
+    while(l<=r){
+        let m = l+Math.floor((r-l)/2)
+        if(nums[m]==target){
+            res[0]=m;
+            r=m-1
+        }
+        else if(nums[m]<target){
+            l=m+1
+        }else{
+            r=m-1
+        }
+    }
+    l=0;
+    r=nums.length-1;
+    while(l<=r){
+        let m = l+Math.floor((r-l)/2)
+        if(nums[m]==target){
+            res[1]=m;
+            l=m+1
+        }
+        else if(nums[m]<target){
+            l=m+1
+        }else{
+            r=m-1
+        }
+    }
+    return res;
+}
