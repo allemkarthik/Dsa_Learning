@@ -30,3 +30,48 @@ var strStr = function(haystack, needle) {
     }
     return -1;
 };
+
+
+// approach using kmp algorithm;
+var strStr = function(haystack, needle) {
+    // kmp algorithm
+    let n=haystack.length;
+    let m=needle.length;
+    let lps=[0]
+    let i=0;
+    let j=1;
+    // step1 build and lps(length of longest prefix that is also suffix) array
+    while(j<m){
+        if(needle[i]==needle[j]){
+            lps[j]=i+1;
+            i++;
+            j++;
+        }else{
+            if(i==0){
+                lps[j]=0;
+                ++j;
+            }else{
+                i=lps[i-1];
+            }
+        }
+    }
+    // step2: check for string
+    i=0;
+    j=0;
+    while(i<n){
+        if(haystack[i]==needle[j]){
+            i++;
+            j++;
+        }else{
+            if(j==0){
+                i++
+            }else{
+                j=lps[j-1]
+            }
+        }
+        if(j==m){
+            return i-m;
+        }
+    }
+    return -1;
+};
