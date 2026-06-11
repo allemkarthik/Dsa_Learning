@@ -45,7 +45,7 @@ var postorderTraversal = function(root) {
     t(root)
     return res;
 
-    // iterative approach;
+    // iterative approach using two stacks;
     if(!root) return [];
     let s1=[root]
     let s2=[]
@@ -65,4 +65,25 @@ var postorderTraversal = function(root) {
     }
     return ans;
     
+    //optimized approach using only one stack
+    let stack=[]
+    let ans=[]
+    let curr=root;
+    let lastVisited=null;
+    while(curr || stack.length){
+        // go left 
+        while(curr){
+            stack.push(curr);
+            curr=curr.left;
+        }
+        let peak= stack[stack.length-1];
+        // go right sub tree if exist
+        if(peak.right && peak.right!=lastVisited){
+            curr=peak.right;
+        }else{
+            ans.push(peak.val)
+            lastVisited=stack.pop()
+        }
+    }
+    return ans;
 };
